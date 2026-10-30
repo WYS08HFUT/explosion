@@ -27,14 +27,19 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Install
         run: npm ci
 
       - name: Build
         run: npm run build
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+        env:
+          # base_path is "" for a user site or a custom domain, and "/<repo>"
+          # for a project site. The trailing slash is required by Vite.
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

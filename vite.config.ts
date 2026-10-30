@@ -2,8 +2,12 @@ import { defineConfig } from 'vite';
 
 const [owner, repository] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
 const isUserSite = Boolean(owner && repository === `${owner}.github.io`);
+// The workflow passes the authoritative Pages base path from configure-pages.
+// The fallback keeps a local `npm run build` (and a manually configured
+// GitHub Actions run) working.
 const pagesBase =
-  process.env.GITHUB_ACTIONS && repository && !isUserSite ? `/${repository}/` : '/';
+  process.env.VITE_BASE_PATH ||
+  (process.env.GITHUB_ACTIONS && repository && !isUserSite ? `/${repository}/` : '/');
 
 export default defineConfig({
   // A project site lives under https://<owner>.github.io/<repo>/, so all
