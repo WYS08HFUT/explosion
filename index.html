@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0f11" />
+    <meta
+      name="description"
+      content="拆开一台全流量火箭发动机，理解双预燃室、涡轮泵和再生冷却。"
+    />
+    <title>全流量 · 拆开一台火箭发动机</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div id="scene-container" class="scene" aria-label="全流量火箭发动机三维模型"></div>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <header class="topbar ui-fade">
+        <div class="brand">
+          <span class="brand__mark">FF</span>
+          <span class="brand__text">火箭发动机 <span>案例 01</span></span>
+        </div>
+        <div class="topbar__meta">
+          <span>RAPTOR 2</span>
+          <span>34 PARTS</span>
+          <span>LOX / CH₄</span>
+        </div>
+      </header>
+
+      <section class="intro fade-only" aria-labelledby="page-title">
+        <p class="intro__eyebrow">FULL-FLOW STAGED COMBUSTION</p>
+        <h1 id="page-title" class="intro__title">拆开一台<br />火箭发动机</h1>
+        <p class="intro__lede">
+          两台预燃室，先把全部液氧和甲烷变成燃气，再送进主燃烧室。拖动下方的拆解滑块，看看全流量循环为什么能省掉一台燃气发生器。
+        </p>
+        <dl class="specs">
+          <div>
+            <dt>海平面推力</dt>
+            <dd>2,256 <span>kN</span></dd>
+          </div>
+          <div>
+            <dt>燃烧室压力</dt>
+            <dd>300 <span>bar</span></dd>
+          </div>
+          <div>
+            <dt>干重</dt>
+            <dd>1,600 <span>kg</span></dd>
+          </div>
+        </dl>
+        <p class="intro__hint">拖动旋转 · 滚轮缩放 · 点击零件查看说明</p>
+      </section>
+
+      <aside id="part-card" class="part-card" aria-live="polite" aria-hidden="true" inert>
+        <div class="part-card__top">
+          <span id="part-index" class="part-card__index">01 / 34</span>
+          <button id="part-close" class="part-card__close" type="button" aria-label="关闭零件说明">
+            ×
+          </button>
+        </div>
+        <p id="part-system" class="part-card__system">结构与控制</p>
+        <h2 id="part-title" class="part-card__title">推力座</h2>
+        <p id="part-what" class="part-card__what"></p>
+        <section id="part-why-wrap" class="part-card__section">
+          <h3>为什么这样设计</h3>
+          <p id="part-why"></p>
+        </section>
+        <section id="part-hint-wrap" class="part-card__section part-card__section--hint">
+          <h3>观察提示</h3>
+          <p id="part-hint"></p>
+        </section>
+        <p id="part-order" class="part-card__foot"></p>
+      </aside>
+
+      <div id="hover-label" class="hover-label" aria-hidden="true">
+        <span class="hover-label__dot"></span>
+        <span id="hover-name"></span>
+      </div>
+
+      <label class="sr-only" for="part-select">选择零件</label>
+      <select id="part-select" class="part-select" aria-label="选择零件">
+        <option value="">选择零件…</option>
+      </select>
+
+      <footer class="console ui-fade">
+        <div class="console__modes" role="group" aria-label="查看模式">
+          <span class="console__label">镜头</span>
+          <button id="btn-spin" class="mode" type="button" aria-pressed="false" title="让涡轮泵转子转起来">
+            自转
+          </button>
+          <button id="btn-cut" class="mode" type="button" aria-pressed="false" title="沿推力轴切开一半">
+            剖切
+          </button>
+          <button id="btn-flow" class="mode" type="button" aria-pressed="false" title="用透视方式显示推进剂流道">
+            流动
+          </button>
+        </div>
+
+        <div class="throttle">
+          <div class="throttle__head">
+            <label for="explode">拆解</label>
+            <output id="explode-value" for="explode">0%</output>
+          </div>
+          <input
+            id="explode"
+            class="throttle__range"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="0"
+            aria-label="拆解进度"
+          />
+          <div class="throttle__ticks" aria-hidden="true">
+            <span>0</span><span>25</span><span>50</span><span>75</span><span>100</span>
+          </div>
+        </div>
+
+        <button id="btn-reset" class="reset" type="button">复位</button>
+      </footer>
+
+      <div id="loading" class="loading">
+        <div class="loading__inner">
+          <p class="loading__eyebrow">CASE 01 · FULL-FLOW</p>
+          <p class="loading__title">正在装配发动机</p>
+          <div class="loading__track"><div id="loading-bar" class="loading__bar"></div></div>
+          <div class="loading__meta"><span id="loading-percent">0%</span><span>GLB · 3.6 MB</span></div>
+        </div>
+      </div>
+
+      <div id="error" class="error" role="alert" hidden>
+        <p class="error__title">模型加载失败</p>
+        <p id="error-message" class="error__message"></p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
