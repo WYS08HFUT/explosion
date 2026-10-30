@@ -1,6 +1,6 @@
-# Full-Flow · 拆开一台火箭发动机
+# explosion · 拆开一台火箭发动机
 
-全流量分级燃烧发动机的交互式学习页原型（M1）。基于 Three.js + Vite + TypeScript，使用 FarsideLab 的 full-flow GLB 与零件清单。
+explosion 是一个交互式火箭发动机分解与教学页原型，基于 Three.js + Vite + TypeScript，使用 FarsideLab 的 full-flow GLB 与零件清单。
 
 设计文档见 [`设计稿.md`](./设计稿.md)。
 
@@ -8,7 +8,7 @@
 
 该项目已部署到 GitHub Pages，直接在浏览器打开下面地址即可查看：
 
-https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/
+https://wys08hfut.github.io/explosion/
 
 如果你想在本地调试或继续开发，可按下面步骤运行：
 
@@ -20,7 +20,7 @@ npm run dev
 随后打开：
 
 - 本地开发地址：<http://127.0.0.1:5173/>
-- 在线部署地址：<https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/>
+- 在线部署地址：<https://wys08hfut.github.io/explosion/>
 
 ## 本地运行
 
@@ -40,10 +40,10 @@ npm run preview
 
 ## 部署到 GitHub Pages
 
-当前仓库是 **项目站点**，不是 `WYS08HFUT.github.io` 用户站点，所以发布地址是：
+当前仓库名是 `explosion`，因此 GitHub Pages 的发布地址为：
 
 ```
-https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/
+https://wys08hfut.github.io/explosion/
 ```
 
 首次部署：
@@ -57,7 +57,7 @@ https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/
 
 仓库名说明：
 
-- 当前仓库名是 `WYS08HFUT.github.io-explosion`，但 owner 是 `WYS08HFUT`，所以它是项目站点，路径里会带仓库名。只有仓库名**恰好**是 `WYS08HFUT.github.io` 时才会变成根站点地址 `https://wys08hfut.github.io/`。
+- 当前仓库名是 `explosion`，因此页面路径会在站点根路径下附带 `/explosion`。
 - 如果想让地址变成 `https://wys08hfut.github.io/`，需要把仓库改名为 `WYS08HFUT.github.io`，workflow 会自动把 base 切回 `/`，然后更新远端：
 
   ```bash
@@ -118,7 +118,7 @@ npm run check:visual
 
 - 模型和清单来自 [FarsideLab 的火箭发动机目录](https://farsidelab.com/concept/rocket-engines/)，下载于 2026-10-30。
 - 13 台发动机的完整快照、`catalog.json` 和许可说明见 [`assets/farsidelab-rocket-engines/README.md`](./assets/farsidelab-rocket-engines/README.md)。
-- **模型本身没有标注开源许可。** 当前仅用于本地原型评估；公开发布前需要取得作者授权或替换为自制模型。`catalog.json` 里的 CC0 / Public Domain 只适用于图片，不适用于 3D 模型本体。
+- **模型本身没有标注开源许可。** 当前仅用于本地原型评估；公开发布前需要取得作者授权或替换为自制模型。`catalog.json` 里的 CC0 / Public Domain 只适用于照片，不适用于 3D 模型本体。
 
 ## 已知限制 / 下一步
 
