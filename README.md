@@ -20,6 +20,29 @@ npm run build
 npm run preview
 ```
 
+## 部署到 GitHub Pages
+
+当前仓库是 **项目站点**，不是 `WYS08HFUT.github.io` 用户站点，所以发布地址是：
+
+```
+https://wys08hfut.github.io/explosion.github.io/
+```
+
+首次部署：
+
+1. 打开 GitHub 仓库 → **Settings → Pages → Build and deployment**。
+2. **Source** 选择 **GitHub Actions**。
+3. 推送 `main` 分支，或手动运行 **Deploy to GitHub Pages** workflow。
+4. 等 Actions 里的 build / deploy 两个 job 变绿，打开上面的地址。
+
+部署配置在 `.github/workflows/deploy.yml`。`vite.config.ts` 会在 GitHub Actions 中自动把 `base` 设为 `/<repo>/`；本地 `npm run dev` 仍然是 `/`，不受影响。
+
+仓库名说明：
+
+- 当前仓库名是 `explosion.github.io`，但 owner 是 `WYS08HFUT`，所以它是项目站点，路径里会带仓库名。
+- 如果想让地址变成 `https://wys08hfut.github.io/`，需要把仓库改名为 `WYS08HFUT.github.io`，workflow 会自动把 base 切回 `/`，然后执行 `git remote set-url origin ...` 更新远端。
+- `https://explosion.github.io/` 这个地址属于 GitHub 账号或组织 `explosion`，当前账号无法直接使用；需要自定义域名时，在 Pages 设置里绑定自己的域名。
+
 ## 当前功能
 
 - **拆解**：0–100% 滑块，按 manifest 的 `explode_offset` 逐零件分离，按 `explode_order` 错峰，带阻尼。

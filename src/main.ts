@@ -6,6 +6,8 @@ import { loadEngine, type EnginePart, type LoadedEngine } from './engine/loadEng
 import { SYSTEM_META, TEACHING, type SystemKey } from './data/teaching';
 import './style.css';
 
+const assetBase = import.meta.env.BASE_URL;
+
 function must<T extends Element>(selector: string): T {
   const element = document.querySelector<T>(selector);
   if (!element) throw new Error(`Missing element: ${selector}`);
@@ -676,9 +678,13 @@ function showError(error: unknown): void {
 
 async function boot(): Promise<void> {
   try {
-    const loaded = await loadEngine('/assets/full-flow_d.glb', '/assets/full-flow.json', (fraction) => {
-      setLoading(fraction);
-    });
+    const loaded = await loadEngine(
+      `${assetBase}assets/full-flow_d.glb`,
+      `${assetBase}assets/full-flow.json`,
+      (fraction) => {
+        setLoading(fraction);
+      },
+    );
 
     engine = loaded;
     exploder = new Exploder(loaded.parts, loaded.maxOrder, reduceMotion);
