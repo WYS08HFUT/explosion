@@ -4,7 +4,25 @@
 
 设计文档见 [`设计稿.md`](./设计稿.md)。
 
-## 运行
+## 线上预览
+
+该项目已部署到 GitHub Pages，直接在浏览器打开下面地址即可查看：
+
+https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/
+
+如果你想在本地调试或继续开发，可按下面步骤运行：
+
+```bash
+npm install
+npm run dev
+```
+
+随后打开：
+
+- 本地开发地址：<http://127.0.0.1:5173/>
+- 在线部署地址：<https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/>
+
+## 本地运行
 
 ```bash
 npm install
@@ -35,11 +53,11 @@ https://wys08hfut.github.io/WYS08HFUT.github.io-explosion/
 3. 推送 `main` 分支，或手动运行 **Deploy to GitHub Pages** workflow。
 4. 等 Actions 里的 build / deploy 两个 job 变绿，打开上面的地址。
 
-部署配置在 `.github/workflows/deploy.yml`。workflow 会读取 `actions/configure-pages` 的 `base_path`，通过 `VITE_BASE_PATH` 传给 Vite；本地 `npm run dev` 仍然是 `/`，不受影响。以后改仓库名或绑定自定义域名，不需要改代码。
+部署配置在 `.github/workflows/deploy.yml`。workflow 会读取 `actions/configure-pages` 的 `base_path`，通过 `VITE_BASE_PATH` 传给 Vite；本地 `npm run dev` 仍然是 `/`，不受影响。
 
 仓库名说明：
 
-- 当前仓库名是 `WYS08HFUT.github.io-explosion`，但 owner 是 `WYS08HFUT`，所以它是项目站点，路径里会带仓库名。只有仓库名**恰好**是 `WYS08HFUT.github.io` 时才是用户站点。
+- 当前仓库名是 `WYS08HFUT.github.io-explosion`，但 owner 是 `WYS08HFUT`，所以它是项目站点，路径里会带仓库名。只有仓库名**恰好**是 `WYS08HFUT.github.io` 时才会变成根站点地址 `https://wys08hfut.github.io/`。
 - 如果想让地址变成 `https://wys08hfut.github.io/`，需要把仓库改名为 `WYS08HFUT.github.io`，workflow 会自动把 base 切回 `/`，然后更新远端：
 
   ```bash
@@ -100,7 +118,7 @@ npm run check:visual
 
 - 模型和清单来自 [FarsideLab 的火箭发动机目录](https://farsidelab.com/concept/rocket-engines/)，下载于 2026-10-30。
 - 13 台发动机的完整快照、`catalog.json` 和许可说明见 [`assets/farsidelab-rocket-engines/README.md`](./assets/farsidelab-rocket-engines/README.md)。
-- **模型本身没有标注开源许可。** 当前仅用于本地原型评估；公开发布前需要取得作者授权或替换为自制模型。`catalog.json` 里的 CC0 / Public Domain 只针对实拍照片。
+- **模型本身没有标注开源许可。** 当前仅用于本地原型评估；公开发布前需要取得作者授权或替换为自制模型。`catalog.json` 里的 CC0 / Public Domain 只适用于图片，不适用于 3D 模型本体。
 
 ## 已知限制 / 下一步
 
